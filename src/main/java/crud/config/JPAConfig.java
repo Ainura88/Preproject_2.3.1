@@ -10,6 +10,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -43,8 +44,8 @@ public class JPAConfig {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/springbootdemo");
-        dataSource.setUsername("root");
-        dataSource.setPassword("root");
+        dataSource.setUsername("Ainura");
+        dataSource.setPassword("dfDQA_868");
         return dataSource;
     }
 }

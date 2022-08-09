@@ -1,18 +1,28 @@
 package crud.model;
 
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "NAME")
     private String name;
 
+    @Column(name = "EMAIL")
     private String email;
 
+    @Column(name = "ADDRESS")
     private String address;
 
 
@@ -26,6 +36,8 @@ public class User {
         this.email = email;
         this.address = address;
     }
+
+
 
     public Long getId() {
         return id;
@@ -57,6 +69,16 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "Id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", address=" + address +
+                '}';
     }
 
 

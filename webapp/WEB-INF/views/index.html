@@ -23,16 +23,8 @@
             <td th:text="${user.name}"></td>
             <td th:text="${user.email}"></td>
             <td th:text="${user.address}"></td>
-            <td style="width: min-content">
-                <form th:method="GET" th:action="@{/edit/{id}(id=${user.id})}">
-                    <input type="submit" value="Edit">
-                </form>
-            </td>
-            <td style="width: min-content">
-                <form th:method="DELETE" th:action="@{/delete/{id}(id=${user.id})}">
-                    <input type="submit" value="Delete">
-                </form>
-            </td>
+            <td><a th:href="@{edit/{id}(id=${user.id})}">Edit</a></td>
+            <td><a th:href="@{delete/{id}(id=${user.id})}">Delete</a></td>
         </tr>
     </th:block>
 </table>

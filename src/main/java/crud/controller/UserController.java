@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class UserController {
 
@@ -13,48 +15,43 @@ public class UserController {
 
     public UserController(UserService userService) {
         this.userService = userService;
-        for (int i = 1; i <= 25; i++) {
-            userService.addUser(new User(
-                    "Name" + i,
-                    "email" + i,
-                    "Address" + i
-            ));
-        }
     }
 
-    @GetMapping("/")
+
+    @GetMapping("/users")
     public String showUsers(Model model) {
-        model.addAttribute("users", userService.getUsers());
+        List<User> users = userService.getUsers();
+        model.addAttribute("users", users);
         return "index";
     }
 
     @GetMapping("/new")
-    public String addUser(Model model) {
-        model.addAttribute("user", new User());
+    public String createUserForm(User user) {
         return "addUser";
     }
 
     @PostMapping("/new")
-    public String saveUser(@ModelAttribute("user") User user) {
+    public String createUser(User user) {
         userService.addUser(user);
-        return "redirect:/";
+        return "redirect:/users";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteUser(id);
-        return "redirect:/";
+        return "redirect:/users";
     }
 
     @GetMapping("/edit/{id}")
     public String editUser(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("user", userService.getUser(id));
+        User user = userService.getUser(id);
+        model.addAttribute("user", user);
         return "editUser";
     }
 
-    @PutMapping("/edit")
-    public String updateUser(@ModelAttribute User user) {
-        userService.editUser(user);
-        return "redirect:/";
+    @PostMapping("/edit")
+    public String updateUser(User user) {
+        userService.addUser(user);
+        return "redirect:/users";
     }
 }

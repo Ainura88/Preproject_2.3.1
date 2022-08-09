@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    UserDAO userDAO;
+    private UserDAO userDAO;
 
     public UserServiceImpl(UserDAO userDAO) {
         this.userDAO = userDAO;
@@ -45,8 +45,5 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void editUser(User user) {
         userDAO.editUser(user);
-    }//04-Aug-2022 12:54:16.333 WARNING [Catalina-utility-1] org.apache.catalina.util.
-    // SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance
-    // for session ID generation using [SHA1PRNG] took [324] milliseconds.
-
+    }
 }
